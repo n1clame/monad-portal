@@ -2,7 +2,14 @@ import "../styles/globals.css";
 import type { Metadata } from "next";
 import React from "react";
 
-export const metadata: Metadata = { title: "monad portals", description: "Unlock Web3 on Monad" };
+export const metadata: Metadata = { 
+  title: "monad portals", 
+  description: "Unlock Web3 on Monad",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
 
 import MonadMusic from "./components/MonadMusic";
 
