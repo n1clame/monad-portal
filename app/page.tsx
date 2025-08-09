@@ -7,13 +7,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import HoverFaq from "@/app/components/HoverFaq";
 import { GaugeCircle, Coins, Cpu, GitCompare, Menu, ExternalLink } from "lucide-react";
 
+type Lang = "en" | "ru" | "uk";
+
 const LINKS = {
   discord: "https://discord.gg/monad",
   twitter: "https://x.com/monad",
   explorer: "https://testnet.monadexplorer.com/",
   docs: "https://docs.monad.xyz/",
   whitepaper: "https://docs.monad.xyz/",
-  faucet: "https://faucet.monad.xyz/"
+  faucet: "https://faucet.monad.xyz"
 };
 
 const MONAD_NET = {
@@ -26,20 +28,123 @@ const MONAD_NET = {
   }
 };
 
-const dict = {
+const dict: Record<Lang, any> = {
   en: {
     brand: "monad portals",
     nav: { home: "Home", why: "Why Monad", start: "Get Started", discord: "Discord", final: "Links", faq: "FAQ" },
-    hero: { title: "Unlock Web3 on Monad — fast, simple, free", start: "Get started", addNet: "Add Monad Testnet", tps: "1000+ TPS", fees: "Low fees", evm: "EVM compatible", parallel: "Parallel execution" },
+    hero: {
+      title: "Unlock Web3 on Monad — fast, simple, free",
+      start: "Get started",
+      addNet: "Add Monad Testnet",
+      tps: "1000+ TPS",
+      fees: "Low fees",
+      evm: "EVM compatible",
+      parallel: "Parallel execution",
+      aboutDiscord: "About Discord"
+    },
+    gas: {
+      title: "Gas Fee in Monad",
+      valueNote: "Static demo value for testnet",
+      madeBy: "website made by syntemp"
+    },
+    why: {
+      tpsDesc: "High throughput for dApps and DeFi.",
+      feesDesc: "Cost-efficient transactions.",
+      evmDesc: "Easy migration of contracts & tools.",
+      parallelDesc: "Optimized processing for scale."
+    },
+    start: {
+      title: "How to get started",
+      steps: [
+        { t: "Install wallet", d: "MetaMask / Rabby" },
+        { t: "Add Monad network", d: "Use the button below" },
+        { t: "Get test tokens", d: "Claim from faucet" },
+        { t: "Try dApps & read docs", d: "Ask in Discord", link: LINKS.discord }
+      ],
+      addBtn: "Add to MetaMask",
+      faucetBtn: "Open Faucet"
+    },
+    faq: { title: "FAQ", hint: "Hover to reveal answers" },
     links: { title: "Official Links" },
-    langSwitch: "RU"
+    switcher: { en: "EN", ru: "RU", uk: "UA" }
   },
   ru: {
     brand: "monad portals",
     nav: { home: "Главная", why: "Почему Monad", start: "Как начать", discord: "Discord", final: "Ссылки", faq: "FAQ" },
-    hero: { title: "Открой Web3 на Monad — быстро, просто, бесплатно", start: "Начать", addNet: "Добавить тестнет Monad", tps: "1000+ TPS", fees: "Низкая комиссия", evm: "EVM-совместимость", parallel: "Параллельное исполнение" },
+    hero: {
+      title: "Открой Web3 на Monad — быстро, просто, бесплатно",
+      start: "Начать",
+      addNet: "Добавить тестнет Monad",
+      tps: "1000+ TPS",
+      fees: "Низкая комиссия",
+      evm: "EVM-совместимость",
+      parallel: "Параллельное исполнение",
+      aboutDiscord: "Про Discord"
+    },
+    gas: {
+      title: "Комиссия газа в Monad",
+      valueNote: "Статическое демо-значение для тестнета",
+      madeBy: "website made by syntemp"
+    },
+    why: {
+      tpsDesc: "Высокая производительность для dApp и DeFi.",
+      feesDesc: "Выгодные транзакции.",
+      evmDesc: "Лёгкая миграция контрактов и тулов.",
+      parallelDesc: "Оптимизация под масштаб."
+    },
+    start: {
+      title: "Как начать",
+      steps: [
+        { t: "Установи кошелёк", d: "MetaMask / Rabby" },
+        { t: "Добавь сеть Monad", d: "Кнопка ниже" },
+        { t: "Получить тестовые токены", d: "Кран" },
+        { t: "Попробуй dApps и читай доки", d: "Спроси в Discord", link: LINKS.discord }
+      ],
+      addBtn: "Добавить в MetaMask",
+      faucetBtn: "Открыть кран"
+    },
+    faq: { title: "FAQ", hint: "Наведи, чтобы увидеть ответ" },
     links: { title: "Официальные ссылки" },
-    langSwitch: "EN"
+    switcher: { en: "EN", ru: "RU", uk: "UA" }
+  },
+  uk: {
+    brand: "monad portals",
+    nav: { home: "Головна", why: "Чому Monad", start: "Як почати", discord: "Discord", final: "Посилання", faq: "FAQ" },
+    hero: {
+      title: "Відкрий Web3 на Monad — швидко, просто, безкоштовно",
+      start: "Почати",
+      addNet: "Додати тестнет Monad",
+      tps: "1000+ TPS",
+      fees: "Низькі комісії",
+      evm: "EVM-сумісність",
+      parallel: "Паралельне виконання",
+      aboutDiscord: "Про Discord"
+    },
+    gas: {
+      title: "Комісія газу в Monad",
+      valueNote: "Статичне демо-значення для тестнету",
+      madeBy: "website made by syntemp"
+    },
+    why: {
+      tpsDesc: "Висока пропускна здатність для dApp і DeFi.",
+      feesDesc: "Вигідні транзакції.",
+      evmDesc: "Легка міграція контрактів і тулінгу.",
+      parallelDesc: "Оптимізовано під масштаб."
+    },
+    start: {
+      title: "Як почати",
+      steps: [
+        { t: "Встанови гаманець", d: "MetaMask / Rabby" },
+        { t: "Додай мережу Monad", d: "Кнопка нижче" },
+        { t: "Отримай тестові токени", d: "Фаусет" },
+        { t: "Спробуй dApps і читай доки", d: "Спитай у Discord", link: LINKS.discord }
+      ],
+      addBtn: "Додати в MetaMask",
+      faucetBtn: "Відкрити фаусет"
+    },
+    faq: { title: "FAQ", hint: "Наведи, щоб побачити відповідь" },
+    links: { title: "Офіційні посилання" },
+    switcher: { en: "EN", ru: "RU", uk: "UA" }
   }
 };
 
@@ -75,11 +180,10 @@ function StickyHero({ t }: any){
             {" — "}
             <span className="inline-block transition-transform group-hover:translate-x-1">{split[1]||""}</span>
           </h1>
-          {/* убран подзаголовок "Apple-style ..." */}
           <div className="pixel-cta-group mt-6 flex flex-wrap gap-3">
             <Button className="rounded-2xl" onClick={()=>document.getElementById("start")?.scrollIntoView({behavior:'smooth'})}>{t.hero.start}</Button>
             <Button variant="secondary" className="rounded-2xl" onClick={()=> (window as any).ethereum?.request?.({ method: 'wallet_addEthereumChain', params: [MONAD_NET.params] })}>{t.hero.addNet}</Button>
-            <Button variant="secondary" className="rounded-2xl" onClick={()=>location.href='/discord'}><span className="grad-text">About Discord</span></Button>
+            <Button variant="secondary" className="rounded-2xl" onClick={()=> (location.href='/discord')}><span className="grad-text">{t.hero.aboutDiscord}</span></Button>
           </div>
           <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4">
             <Chip text={t.hero.tps}/>
@@ -110,8 +214,14 @@ function InfoCard({ icon:Icon, title, desc }: any){
 }
 
 export default function Page(){
-  const [lang,setLang] = useState<"en"|"ru">("en");
+  const [lang,setLang] = useState<Lang>("en"); // EN по умолчанию
   const t = useMemo(()=>dict[lang], [lang]);
+
+  const cycleLang = () => {
+    if (lang === "en") setLang("ru");
+    else if (lang === "ru") setLang("uk");
+    else setLang("en");
+  };
 
   return (
     <div className="min-h-screen bg-violet-950 text-white selection:bg-violet-500/30">
@@ -129,10 +239,29 @@ export default function Page(){
               {id:'discord',label:t.nav.discord,href:'/discord'},
               {id:'faq',label:t.nav.faq,href:'#faq'},
               {id:'links',label:t.nav.final,href:'#links'}
-            ].map(n=>(<a key={n.id} href={n.href} className="text-sm text-white/80 hover:text-white transition">{n.label}</a>))}
-            <Button className="rounded-2xl" onClick={()=>setLang(lang==='en'?'ru':'en')}>{t.langSwitch}</Button>
+            ].map((n)=>(
+              <a key={n.id} href={n.href} className="text-sm text-white/80 hover:text-white transition">{n.label}</a>
+            ))}
+            <Button
+              variant="secondary"
+              size="sm"
+              className="rounded-xl px-2 py-1 text-xs"
+              onClick={cycleLang}
+            >
+              {t.switcher[lang]}
+            </Button>
           </nav>
-          <div className="md:hidden flex items-center gap-2"><Button className="rounded-2xl px-3" onClick={()=>setLang(lang==='en'?'ru':'en')}>{t.langSwitch}</Button><button className="p-2"><Menu/></button></div>
+          <div className="md:hidden flex items-center gap-2">
+            <Button
+              variant="secondary"
+              size="sm"
+              className="rounded-xl px-2 py-1 text-xs"
+              onClick={cycleLang}
+            >
+              {t.switcher[lang]}
+            </Button>
+            <button className="p-2"><Menu/></button>
+          </div>
         </div>
       </header>
 
@@ -148,12 +277,12 @@ export default function Page(){
 
           <div className="relative max-w-2xl mx-auto">
             <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur p-8 text-center">
-              <div className="mb-2 text-xs sm:text-sm font-mono tracking-wider text-white/80 animate-float-soft glow-soft">website made by syntemp</div>
-<div className="text-sm uppercase tracking-wider text-white/70 font-mono">Gas Fee in Monad</div>
+              <div className="mb-2 text-xs sm:text-sm font-mono tracking-wider text-white/80 animate-float-soft glow-soft">{t.gas.madeBy}</div>
+              <div className="text-sm uppercase tracking-wider text-white/70 font-mono">{t.gas.title}</div>
               <div className="mt-2 text-4xl pixel gasShimmer animate-gas-wiggle inline-block px-3 py-1 rounded">
                 0.00021 MON
               </div>
-              <div className="pixel-chip-group mt-3 text-white/70 text-sm font-sans">Static demo value for testnet</div>
+              <div className="pixel-chip-group mt-3 text-white/70 text-sm font-sans">{t.gas.valueNote}</div>
             </div>
           </div>
         </div>
@@ -161,66 +290,87 @@ export default function Page(){
 
       {/* WHY (without Compare networks) */}
       <SectionWrap id="why">
-        <div className="pixel-text-base pixel-why max-w-4xl mx-auto"><h2 className="text-3xl font-bold font-serif group pixel pixel-purple pixel-animated">
-          <span className="inline-block transition-transform group-hover:-translate-x-1">{t.nav.why.split(' ')[0]}</span>{" "}
-          <span className="inline-block transition-transform group-hover:translate-x-1">{t.nav.why.split(' ').slice(1).join(' ')}</span>
-        </h2>
-        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          <InfoCard icon={GaugeCircle} title="1000+ TPS" desc={lang==='en'?"High throughput for dApps and DeFi.":"Высокая производительность для dApp и DeFi."}/>
-          <InfoCard icon={Coins} title={t.hero.fees} desc={lang==='en'?"Cost-efficient transactions.":"Выгодные транзакции."}/>
-          <InfoCard icon={Cpu} title={t.hero.evm} desc={lang==='en'?"Easy migration of contracts & tools.":"Лёгкая миграция контрактов и тулов."}/>
-          <InfoCard icon={GitCompare} title={t.hero.parallel} desc={lang==='en'?"Optimized processing for scale.":"Оптимизация под масштаб."}/>
+        <div className="pixel-text-base pixel-why max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold font-serif group pixel pixel-purple pixel-animated">
+            <span className="inline-block transition-transform group-hover:-translate-x-1">{t.nav.why.split(' ')[0]}</span>{" "}
+            <span className="inline-block transition-transform group-hover:translate-x-1">{t.nav.why.split(' ').slice(1).join(' ')}</span>
+          </h2>
+          <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            <InfoCard icon={GaugeCircle} title="1000+ TPS" desc={t.why.tpsDesc}/>
+            <InfoCard icon={Coins} title={t.hero.fees} desc={t.why.feesDesc}/>
+            <InfoCard icon={Cpu} title={t.hero.evm} desc={t.why.evmDesc}/>
+            <InfoCard icon={GitCompare} title={t.hero.parallel} desc={t.why.parallelDesc}/>
+          </div>
         </div>
-      </div></SectionWrap>
+      </SectionWrap>
 
       {/* START raised title over oval */}
       <SectionWrap id="start">
-        <div className="pixel-text-base pixel-start max-w-4xl mx-auto"><h2 className="text-3xl font-bold font-serif relative z-10 mb-4 pixel pixel-purple pixel-animated">{lang==='en'?"How to get started":"Как начать"}</h2>
-        <div className="relative mt-8 md:mt-12">
-          <div className="absolute -inset-6 md:-inset-8 rounded-[9999px] border-2 border-violet-300/40 pointer-events-none"></div>
-          <div className="grid md:grid-cols-4 gap-4">
-            {[
-              {t: lang==='en'?"Install wallet":"Установи кошелёк", d: "MetaMask / Rabby"},
-              {t: lang==='en'?"Add Monad network":"Добавь сеть Monad", d: lang==='en'?"Use the button below":"Кнопка ниже"},
-              {t: lang==='en'?"Get test tokens":"Получить токены", d: lang==='en'?"Claim from faucet":"Кран"},
-              {t: lang==='en'?"Try dApps & read docs":"dApp + документация", d: lang==='en'?"Ask in Discord":"Задай вопрос в Discord", link: LINKS.discord}
-            ].map((s,i)=>(
-              <Card key={i} className="bg-white/5 border-white/10 transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_24px_rgba(167,139,250,0.35)]">
-                <CardContent className="p-5">
-                  <h3 className="font-semibold font-mono">{s.t}</h3>
-                  <p className="text-sm text-white/75 mt-1 font-sans">{s.link ? <a className="underline decoration-violet-400 hover:text-white" href={s.link} target="_blank">{s.d}</a> : s.d}</p>
-                  {i===1&&(<Button className="mt-4 w-full rounded-2xl" onClick={()=> (window as any).ethereum?.request?.({ method:'wallet_addEthereumChain', params: [{ chainId: "0x279F", chainName: "Monad Testnet", nativeCurrency: { name: "MON", symbol: "MON", decimals: 18 }, rpcUrls: ["https://testnet-rpc.monad.xyz"], blockExplorerUrls: ["https://testnet.monadexplorer.com"] }] })}>Add to MetaMask</Button>)}
-                  {i===2&&(<Button variant="secondary" className="mt-4 w-full rounded-2xl" onClick={()=>window.open(LINKS.faucet,'_blank')}>Open Faucet</Button>)}
-                </CardContent>
-              </Card>
-            ))}
+        <div className="pixel-text-base pixel-start max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold font-serif relative z-10 mb-4 pixel pixel-purple pixel-animated">{t.start.title}</h2>
+          <div className="relative mt-8 md:mt-12">
+            <div className="absolute -inset-6 md:-inset-8 rounded-[9999px] border-2 border-violet-300/40 pointer-events-none"></div>
+            <div className="grid md:grid-cols-4 gap-4">
+              {t.start.steps.map((s: any, i: number)=>(
+                <Card key={i} className="bg-white/5 border-white/10 transition-all duration-300 hover:bg-white/10 hover:shadow-[0_0_24px_rgba(167,139,250,0.35)]">
+                  <CardContent className="p-5">
+                    <h3 className="font-semibold font-mono">{s.t}</h3>
+                    <p className="text-sm text-white/75 mt-1 font-sans">
+                      {s.link ? <a className="underline decoration-violet-400 hover:text-white" href={s.link} target="_blank">{s.d}</a> : s.d}
+                    </p>
+                    {i===1&&(
+                      <Button
+                        className="mt-4 w-full rounded-2xl"
+                        onClick={()=> (window as any).ethereum?.request?.({
+                          method:'wallet_addEthereumChain',
+                          params: [MONAD_NET.params]
+                        })}
+                      >
+                        {t.start.addBtn}
+                      </Button>
+                    )}
+                    {i===2&&(
+                      <Button
+                        variant="secondary"
+                        className="mt-4 w-full rounded-2xl"
+                        onClick={()=>window.open(LINKS.faucet,'_blank')}
+                      >
+                        {t.start.faucetBtn}
+                      </Button>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         </div>
-      </div></SectionWrap>
+      </SectionWrap>
 
       {/* FAQ hover reveal */}
       <SectionWrap id="faq">
-        <div className="pixel-text-base pixel-faq"><h2 className="text-3xl font-bold font-serif">FAQ</h2>
-        <p className="text-white/70 mt-2">{lang==='en'?'Hover to reveal answers':'Наведи, чтобы увидеть ответ'}</p>
-        <div className="mt-6">
-          <HoverFaq items={[
-            { q:"Is Monad EVM compatible?", a:"Yes — contracts & tooling can be ported with minimal changes." },
-            { q:"How to join the testnet?", a:"Add the testnet, claim MON from faucet, try dApps, share feedback in Discord." },
-            { q:"What are fees like?", a:"Low fees thanks to optimized execution & parallelism." },
-            { q:"Where to track transactions?", a:"Use the Testnet Explorer linked in the footer." },
-            { q:"Does Monad support parallel execution?", a:"Yes, it's a core part of performance strategy." },
-            { q:"Is it EVM tooling friendly?", a:"MetaMask, Hardhat, Foundry — all good to go." },
-            { q:"How to add testnet quickly?", a:"Use the 'Add Monad Testnet' button on the hero." },
-            { q:"Where to ask for help?", a:"Join Discord — channels for devs and community." },
-            { q:"Can I showcase NFTs?", a:"NFT page removed per request; focus on Discord & docs." },
-            { q:"Where to read docs/whitepaper?", a:"docs.monad.xyz has both." }
-          ]}/>
+        <div className="pixel-text-base pixel-faq">
+          <h2 className="text-3xl font-bold font-serif">FAQ</h2>
+          <p className="text-white/70 mt-2">{t.faq.hint}</p>
+          <div className="mt-6">
+            <HoverFaq items={[
+              { q:"Is Monad EVM compatible?", a:"Yes — contracts & tooling can be ported with minimal changes." },
+              { q:"How to join the testnet?", a:"Add the testnet, claim MON from faucet, try dApps, share feedback in Discord." },
+              { q:"What are fees like?", a:"Low fees thanks to optimized execution & parallelism." },
+              { q:"Where to track transactions?", a:"Use the Testnet Explorer linked in the footer." },
+              { q:"Does Monad support parallel execution?", a:"Yes, it's a core part of performance strategy." },
+              { q:"Is it EVM tooling friendly?", a:"MetaMask, Hardhat, Foundry — all good to go." },
+              { q:"How to add testnet quickly?", a:"Use the 'Add Monad Testnet' button on the hero." },
+              { q:"Where to ask for help?", a:"Join Discord — channels for devs and community." },
+              { q:"Can I showcase NFTs?", a:"NFT page removed per request; focus on Discord & docs." },
+              { q:"Where to read docs/whitepaper?", a:"docs.monad.xyz has both." }
+            ]}/>
+          </div>
         </div>
-      </div></SectionWrap>
+      </SectionWrap>
 
       {/* Official Links with pixel wiggle title */}
       <SectionWrap id="links">
-        <h2 className="text-2xl font-bold pixel pixel-wiggle mb-4 letters-split">Official Links</h2>
+        <h2 className="text-2xl font-bold pixel pixel-wiggle mb-4 letters-split">{t.links.title}</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             {label:'Discord',url:LINKS.discord,grad:'from-indigo-400 to-violet-500'},
