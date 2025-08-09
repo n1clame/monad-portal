@@ -1,60 +1,32 @@
-'use client';
-import React, { useMemo } from 'react';
-import { motion, useAnimationControls } from 'framer-motion';
+"use client";
 
-type Item = {
-  src: string;
-  x: number;
-  y: number;
-  size: number;
-};
+import { motion, useAnimation } from "framer-motion";
+import { useState } from "react";
 
-const IMGS = [
-  '/characters/pepe-glasses.png',
-  '/characters/hedgehog-cute.png',
-  '/characters/catfish.png',
-];
+export default function SiteBackground() {
+  const controls = useAnimation();
+  const [isDragging, setIsDragging] = useState(false);
 
-function DraggableImg({ src, x, y, size }: Item) {
-  const controls = useAnimationControls();
   return (
     <motion.div
-      className="drag-item"
-      style={{ left: x, top: y, width: size, height: size }}
+      className="fixed inset-0 z-[-1]"
       drag
       dragElastic={0.2}
-      dragMomentum={0.3}
-      onDragEnd={() => controls.start({ x: 0, y: 0, transition: { type: 'spring', stiffness: 300, damping: 22 } })}
+      dragMomentum={true} // boolean
+      dragTransition={{ power: 0.3 }} // настройка силы инерции
+      onDragStart={() => setIsDragging(true)}
+      onDragEnd={() => {
+        setIsDragging(false);
+        controls.start({
+          x: 0,
+          y: 0,
+          transition: { type: "spring", stiffness: 300, damping: 22 },
+        });
+      }}
       animate={controls}
       whileTap={{ scale: 0.97 }}
     >
-      <img src={src} alt="" draggable={false} />
+      {/* Тут твой фон или контент */}
     </motion.div>
-  );
-}
-
-export default function SiteBackground() {
-  // deterministic scatter so it "looks good"
-  const items: Item[] = useMemo(() => {
-    const positions = [
-      { x: 40, y: 120, size: 110 },
-      { x: 280, y: 60, size: 140 },
-      { x: 620, y: 180, size: 120 },
-      { x: 900, y: 100, size: 130 },
-      { x: 120, y: 420, size: 140 },
-      { x: 860, y: 460, size: 120 },
-    ];
-    return positions.map((p, i) => ({
-      ...p,
-      src: IMGS[i % IMGS.length],
-    }));
-  }, []);
-
-  return (
-    <div className="bg-field" aria-hidden="true">
-      {items.map((it, idx) => (
-        <DraggableImg key={idx} {...it} />
-      ))}
-    </div>
   );
 }
