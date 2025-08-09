@@ -1,0 +1,349 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; background: #1b0b3a; color: white; }
+body{position:relative;}
+.pixel { font-family: "Press Start 2P", system-ui, monospace; letter-spacing: 0.5px; }
+
+/* ===== Gas shimmer & wiggle ===== */
+@keyframes gas-wiggle {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-2px) rotate(-0.4deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+@keyframes gas-shine {
+  0%   { left: -150%; }
+  100% { left: 150%; }
+}
+.gasShimmer { position: relative; overflow: hidden; }
+.gasShimmer::after {
+  content: "";
+  position: absolute; top: 0; bottom: 0; left: -150%;
+  width: 50%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+  animation: gas-shine 2.2s linear infinite;
+  pointer-events: none;
+}
+.animate-gas-wiggle { animation: gas-wiggle 2.2s ease-in-out infinite; }
+
+/* ===== Discord role title 'abyss' float ===== */
+@keyframes float-abyss {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+.role-abyss {
+  position: relative; display: inline-block;
+  filter: drop-shadow(0 2px 0 rgba(0,0,0,0.2));
+  animation: float-abyss 3s ease-in-out infinite;
+}
+.role-abyss::after {
+  content: "";
+  position: absolute; left: 10%; right: 10%; bottom: -8px; height: 10px;
+  background: radial-gradient(50% 60% at 50% 50%, rgba(0,0,0,0.35), transparent 70%);
+  filter: blur(4px); opacity: .9;
+}
+
+/* ===== Pixel wiggle for Official Links ===== */
+@keyframes pixel-wiggle {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(1px); }
+  100% { transform: translateX(0); }
+}
+.pixel-wiggle { animation: pixel-wiggle 2s infinite; }
+
+/* Added by assistant */
+
+@keyframes float-soft {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+.animate-float-soft { animation: float-soft 3s ease-in-out infinite; }
+.glow-soft { text-shadow: 0 0 6px rgba(124, 58, 237, 0.55), 0 0 12px rgba(124, 58, 237, 0.35); }
+
+
+/* === Assistant additions: hover letter spread & oval glow === */
+.letters-split { transition: letter-spacing 250ms ease, text-shadow 250ms ease, transform 250ms ease; }
+.letters-split:hover { letter-spacing: 0.25em; text-shadow: 0 0 8px rgba(139,92,246,0.6), 0 0 16px rgba(139,92,246,0.35); transform: translateY(-1px); }
+
+@keyframes oval-glow {
+  0%   { box-shadow: 0 0 0px rgba(168,85,247,0.25), inset 0 0 0px rgba(168,85,247,0.15); border-color: rgba(196,181,253,0.35); }
+  50%  { box-shadow: 0 0 24px rgba(168,85,247,0.45), inset 0 0 12px rgba(168,85,247,0.25); border-color: rgba(196,181,253,0.6); }
+  100% { box-shadow: 0 0 0px rgba(168,85,247,0.25), inset 0 0 0px rgba(168,85,247,0.15); border-color: rgba(196,181,253,0.35); }
+}
+.oval-glow { animation: oval-glow 3s ease-in-out infinite; }
+
+@keyframes pixel-breathe {
+  0%   { transform: translateY(0) scale(1); filter: drop-shadow(0 0 0 rgba(139,92,246,0.0)); }
+  50%  { transform: translateY(-1px) scale(1.01); filter: drop-shadow(0 0 8px rgba(139,92,246,0.4)); }
+  100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 0 rgba(139,92,246,0.0)); }
+}
+.pixel-purple { color: #c4b5fd; } /* violet-300 */
+.pixel-animated { animation: pixel-breathe 2.6s ease-in-out infinite; }
+
+
+/* === Assistant: section pixel hover themes === */
+/* Shared pixel base */
+.pixel-text-base :where(h1,h2,h3,h4,h5,h6,p,li,span,a,small,strong,em,code,div) {
+  font-family: "Press Start 2P", system-ui, monospace;
+  letter-spacing: 0.3px;
+  color: #c7b8ff; /* calm violet base */
+  transition: color .25s ease, text-shadow .25s ease, transform .25s ease, background-position .6s ease;
+}
+.pixel-text-base a:hover {
+  text-decoration: none;
+}
+
+/* Hover gradients per section */
+.pixel-why :where(h1,h2,h3,h4,h5,h6,p,li,span,a,small,strong,em,code):hover {
+  background-image: linear-gradient(90deg, #4c1d95, #111827, #2563eb, #1f2937);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 8px rgba(59,130,246,.30), 0 0 14px rgba(124,58,237,.25);
+  transform: translateY(-1px);
+  background-position: 100% 0;
+}
+.pixel-start :where(h1,h2,h3,h4,h5,h6,p,li,span,a,small,strong,em,code):hover {
+  background-image: linear-gradient(90deg, #5b21b6, #0f172a, #06b6d4, #111827);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 8px rgba(6,182,212,.28), 0 0 14px rgba(124,58,237,.25);
+  transform: translateY(-1px);
+  background-position: 100% 0;
+}
+.pixel-faq :where(h1,h2,h3,h4,h5,h6,p,li,span,a,small,strong,em,code):hover {
+  background-image: linear-gradient(90deg, #4c1d95, #0b1320, #22c55e, #111827);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 8px rgba(34,197,94,.28), 0 0 14px rgba(124,58,237,.25);
+  transform: translateY(-1px);
+  background-position: 100% 0;
+}
+
+
+/* === Assistant: pixel nav hover === */
+.pixel-nav a {
+  font-family: "Press Start 2P", system-ui, monospace;
+  letter-spacing: 0.3px;
+  color: #e5e7eb; /* light gray base */
+  transition: color .2s ease, text-shadow .25s ease, transform .25s ease, background-position .6s ease;
+}
+.pixel-nav a:hover {
+  background-image: linear-gradient(90deg, #6d28d9, #7c2d12, #f59e0b, #4c1d95);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 8px rgba(245,158,11,.25), 0 0 14px rgba(124,58,237,.25);
+  transform: translateY(-1px);
+  background-position: 100% 0;
+}
+
+/* === Assistant: smaller nav text === */
+.pixel-nav a {
+  font-size: 0.82rem; /* between text-xs and text-sm */
+}
+@media (min-width: 640px) {
+  .pixel-nav a { font-size: 0.86rem; }
+}
+
+/* === Assistant: section fine-tune sizes === */
+.pixel-start :where(p,li,span,a,small,div) { font-size: 0.94rem; }
+.pixel-start h2 { font-size: 1.6rem; } /* was ~text-3xl visually */
+
+.pixel-discord :where(p,li,span,a,small,div) { font-size: 0.94rem; }
+.pixel-discord h1, .pixel-discord h2 { font-size: 1.6rem; }
+
+
+/* === Assistant: neon gradient blobs === */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: 0;
+  opacity: 0.25;
+  pointer-events: none;
+  animation: neonMove 20s ease-in-out infinite alternate;
+}
+
+body::before {
+  background-image: radial-gradient(circle at 30% 30%, rgba(124,58,237,0.35), transparent 60%),
+                    radial-gradient(circle at 70% 70%, rgba(59,130,246,0.35), transparent 60%);
+}
+
+body::after {
+  background-image: radial-gradient(circle at 60% 40%, rgba(236,72,153,0.25), transparent 60%),
+                    radial-gradient(circle at 40% 60%, rgba(139,92,246,0.3), transparent 60%);
+  animation-delay: 10s;
+}
+
+@keyframes neonMove {
+  0% {
+    transform: translate(0,0) scale(1);
+  }
+  100% {
+    transform: translate(-5%, -5%) scale(1.05);
+  }
+}
+
+/* === Assistant: neon js div === */
+.neon-js{
+  background-image:
+    radial-gradient(circle at 30% 30%, rgba(124,58,237,0.35), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(59,130,246,0.35), transparent 60%),
+    radial-gradient(circle at 60% 40%, rgba(236,72,153,0.25), transparent 60%),
+    radial-gradient(circle at 40% 60%, rgba(139,92,246,0.3), transparent 60%);
+  background-repeat: no-repeat;
+  background-size: cover;
+  animation: neonMove 20s ease-in-out infinite alternate;
+  opacity: .25;
+}
+
+/* === Assistant: floating characters background === */
+.bg-chars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+.bg-char {
+  position: absolute;
+  opacity: 0.1;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.3));
+  animation: floatChar 12s ease-in-out infinite;
+}
+@keyframes floatChar {
+  0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+  50% { transform: translateY(-15px) rotate(3deg) scale(1.02); }
+}
+
+/* === Assistant: monad music player === */
+.monad-music .mm-card{
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .6rem .75rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(180deg, rgba(20,8,40,.85), rgba(12,6,24,.8));
+  box-shadow: 0 6px 30px rgba(124,58,237,.15), inset 0 0 0 1px rgba(255,255,255,.04);
+  backdrop-filter: blur(8px);
+}
+.monad-music .mm-left{ display:flex; align-items:center; gap:.6rem; min-width: 0; }
+.monad-music .mm-icon{
+  display:grid; place-items:center;
+  width: 32px; height: 32px; border-radius: .75rem;
+  background: radial-gradient(circle at 30% 30%, rgba(124,58,237,.6), transparent 60%);
+  color: #e9d5ff;
+  filter: drop-shadow(0 0 8px rgba(124,58,237,.35));
+}
+.monad-music .mm-title{ display:flex; flex-direction:column; line-height:1.1; }
+.monad-music .mm-brand{
+  font-family: "Press Start 2P", system-ui, monospace;
+  font-size: .72rem; letter-spacing: .4px;
+  background-image: linear-gradient(90deg, #a78bfa, #7c3aed, #a78bfa);
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: mmGradient 6s ease-in-out infinite alternate;
+}
+.monad-music .mm-sub{ font-size: .68rem; color: rgba(255,255,255,.55); margin-top:2px; }
+.monad-music .mm-ctrls{ display:flex; align-items:center; gap:.4rem; margin-left:auto; }
+.monad-music .mm-btn{
+  display:grid; place-items:center;
+  width: 32px; height: 32px; border-radius: .75rem;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  color: #e5e7eb;
+  transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
+}
+.monad-music .mm-btn:hover{
+  box-shadow: 0 0 10px rgba(236,72,153,.35), 0 0 14px rgba(124,58,237,.35);
+  border-color: rgba(236,72,153,.35);
+  background: rgba(236,72,153,.12);
+  transform: translateY(-1px);
+}
+.monad-music .mm-slider{ appearance: none; width: 120px; height: 4px; border-radius: 999px; background: rgba(255,255,255,.15); }
+.monad-music .mm-slider::-webkit-slider-thumb{
+  -webkit-appearance: none; appearance: none;
+  width: 14px; height: 14px; border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #ec4899, #7c3aed);
+  box-shadow: 0 0 10px rgba(236,72,153,.45), 0 0 14px rgba(124,58,237,.35);
+  border: 0;
+}
+@keyframes mmGradient{
+  0%{ background-position: 0% 0; }
+  100%{ background-position: 100% 0; }
+}
+
+/* === Assistant: pixel CTAs & chips === */
+@keyframes pixelShift {
+  0% { background-position: 0% 0; }
+  100% { background-position: 100% 0; }
+}
+.pixel-cta-group a,
+.pixel-cta-group button {
+  font-family: "Press Start 2P", system-ui, monospace;
+  letter-spacing: .3px;
+  border-radius: .75rem;
+  border: 1px solid rgba(255,255,255,.12);
+  background: linear-gradient(90deg, rgba(124,58,237,.25), rgba(59,130,246,.20), rgba(236,72,153,.25));
+  background-size: 200% 100%;
+  color: #e6e6ff;
+  transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease, background-position .6s ease, color .25s ease;
+}
+.pixel-cta-group a:hover,
+.pixel-cta-group button:hover {
+  background-position: 100% 0;
+  box-shadow: 0 0 12px rgba(124,58,237,.45), 0 0 18px rgba(236,72,153,.35);
+  border-color: rgba(236,72,153,.35);
+  transform: translateY(-1px);
+}
+.pixel-chip-group > * {
+  font-family: "Press Start 2P", system-ui, monospace;
+  letter-spacing: .2px;
+  border-radius: .9rem;
+  border: 1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(120% 120% at 0% 50%, rgba(124,58,237,.15), transparent 60%),
+    radial-gradient(120% 120% at 100% 50%, rgba(59,130,246,.12), transparent 60%);
+  color: #c7b8ff;
+  transition: transform .2s ease, box-shadow .25s ease, border-color .25s ease, color .25s ease;
+}
+.pixel-chip-group > *:hover {
+  color: #fff;
+  box-shadow: 0 0 10px rgba(124,58,237,.35), 0 0 14px rgba(59,130,246,.28);
+  border-color: rgba(124,58,237,.35);
+  transform: translateY(-1px);
+}
+.grad-text {
+  background-image: linear-gradient(90deg, #a78bfa, #7c3aed, #60a5fa, #a78bfa);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: background-position .6s ease;
+}
+.pixel-cta-group a:hover .grad-text,
+.pixel-cta-group button:hover .grad-text,
+.pixel-chip-group > *:hover .grad-text {
+  background-position: 100% 0;
+}
