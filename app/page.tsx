@@ -244,8 +244,7 @@ export default function Page(){
             ))}
             <Button
               variant="secondary"
-              size="sm"
-              className="rounded-xl px-2 py-1 text-xs"
+              className="rounded-xl px-2 py-1 text-xs h-7"
               onClick={cycleLang}
             >
               {t.switcher[lang]}
@@ -254,8 +253,7 @@ export default function Page(){
           <div className="md:hidden flex items-center gap-2">
             <Button
               variant="secondary"
-              size="sm"
-              className="rounded-xl px-2 py-1 text-xs"
+              className="rounded-xl px-2 py-1 text-xs h-7"
               onClick={cycleLang}
             >
               {t.switcher[lang]}
